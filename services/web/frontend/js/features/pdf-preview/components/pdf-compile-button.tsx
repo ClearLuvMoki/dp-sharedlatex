@@ -105,12 +105,13 @@ function PdfCompileButton() {
           onClick={() => startCompile()}
           className={buttonClassName}
           loadingLabel={`${t('compiling')}…`}
+          style={{color: "#3C49DD", backgroundColor: "#e8e9f4"}}
         >
           {t('recompile')}
         </OLButton>
       </OLTooltip>
 
-      <DropdownToggle
+      {/* <DropdownToggle
         as={DropdownToggleCustom}
         split
         variant="primary"
@@ -118,7 +119,7 @@ function PdfCompileButton() {
         size="sm"
         aria-label={t('toggle_compile_options_menu')}
         className={dropdownToggleClassName}
-      />
+      /> */}
 
       <DropdownMenu>
         <DropdownHeader>{t('auto_compile')}</DropdownHeader>

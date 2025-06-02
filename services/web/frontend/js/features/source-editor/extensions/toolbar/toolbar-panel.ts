@@ -24,8 +24,8 @@ export function createToolbarPanel() {
 
 const toolbarTheme = EditorView.theme({
   '.ol-cm-toolbar-wrapper': {
-    backgroundColor: 'var(--editor-toolbar-bg)',
-    color: 'var(--toolbar-btn-color)',
+    backgroundColor: '#E5E6EB',
+    color: '#4E5969',
   },
   '.ol-cm-toolbar': {
     flex: 1,
@@ -221,8 +221,8 @@ const toolbarTheme = EditorView.theme({
     borderBottomLeftRadius: '4px',
     borderBottomRightRadius: '4px',
     boxShadow: '0 2px 5px rgb(0 0 0 / 20%)',
-    backgroundColor: 'var(--editor-toolbar-bg)',
-    color: 'var(--toolbar-btn-color)',
+    backgroundColor: '#E9EBF2',
+    color: '#4E5969',
     padding: '0',
     '&.bottom': {
       marginTop: '1px',
@@ -257,7 +257,7 @@ const toolbarTheme = EditorView.theme({
         backgroundColor: 'rgba(125, 125, 125, 0.1)',
       },
       '&:hover': {
-        backgroundColor: 'rgba(125, 125, 125, 0.2)',
+        backgroundColor: '#e4e6f6',
         color: 'inherit',
       },
       '&.section-level-section': {

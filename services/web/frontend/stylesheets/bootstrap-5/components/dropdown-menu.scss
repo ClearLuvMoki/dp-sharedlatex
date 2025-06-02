@@ -173,10 +173,10 @@ $dropdown-item-min-height: 36px;
   padding-left: var(--spacing-05);
   margin-left: 0;
 
-  &.btn-primary,
-  &.btn-danger {
-    border-left: 1px solid rgb($neutral-90, 0.16);
-  }
+  // &.btn-primary,
+  // &.btn-danger {
+  //   border-left: 1px solid rgb($neutral-90, 0.16);
+  // }
 
   &.btn-secondary {
     border-left: 1px solid var(--neutral-60);

@@ -56,7 +56,7 @@ function PdfPreviewHybridToolbar() {
 function PdfPreviewHybridToolbarInner() {
   return (
     <>
-      <div className="toolbar-pdf-left">
+      <div className="toolbar-pdf-left" style={{paddingLeft: 11}}>
         <PdfCompileButton />
         <PdfHybridLogsButton />
         <PdfHybridDownloadButton />

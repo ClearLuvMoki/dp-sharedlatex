@@ -18,7 +18,7 @@
   position: absolute;
   inset: 0;
   overflow-y: auto;
-  background-color: var(--logs-pane-bg);
+  background-color: #fff;
   z-index: 11; // above the PDF viewer + controls
   top: var(--toolbar-small-height);
 

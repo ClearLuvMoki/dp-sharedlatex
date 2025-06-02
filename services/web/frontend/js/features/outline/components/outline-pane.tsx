@@ -49,7 +49,7 @@ const OutlinePane = React.memo<{
         />
       </header>
       {isOpen && (
-        <div className="outline-body">
+        <div className="outline-body" style={{padding: "0 12px"}}>
           <OutlineRoot
             outline={outline}
             jumpToLine={jumpToLine}

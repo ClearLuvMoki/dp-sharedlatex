@@ -153,7 +153,7 @@ const Toolbar = memo(function Toolbar() {
           className="ol-cm-toolbar toolbar-editor"
           ref={elementRef}
         >
-          <EditorSwitch />
+          {/* <EditorSwitch /> */}
           {showActions && (
             <ToolbarItems
               state={state}

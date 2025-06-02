@@ -44,6 +44,7 @@ export const ToolbarItems: FC<{
         <div
           className="ol-cm-toolbar-button-group"
           aria-label={t('toolbar_undo_redo_actions')}
+          style={{borderLeft: "none"}}
         >
           <ToolbarButton
             id="toolbar-undo"
@@ -68,6 +69,10 @@ export const ToolbarItems: FC<{
               className="ol-cm-toolbar-button-group"
               data-overflow="group-section"
               aria-label={t('toolbar_text_formatting')}
+              style={{
+                borderRadius: 14,
+                backgroundColor: "#E9EBF2"
+              }}
             >
               <SectionHeadingDropdown />
             </div>
@@ -127,13 +132,13 @@ export const ToolbarItems: FC<{
                 command={commands.wrapInHref}
                 icon="add_link"
               />
-              <ToolbarButton
+              {/* <ToolbarButton
                 id="toolbar-add-comment"
                 label={t('add_comment')}
                 disabled={state.selection.main.empty}
                 command={commands.addComment}
                 icon="add_comment"
-              />
+              /> */}
               <ToolbarButton
                 id="toolbar-ref"
                 label={t('toolbar_insert_cross_reference')}
@@ -146,7 +151,7 @@ export const ToolbarItems: FC<{
                 command={commands.insertCite}
                 icon="book_5"
               />
-              <InsertFigureDropdown />
+              {/* <InsertFigureDropdown /> */}
               {wfRebrandEnabled && writefullInstance ? (
                 <TableDropdown />
               ) : (

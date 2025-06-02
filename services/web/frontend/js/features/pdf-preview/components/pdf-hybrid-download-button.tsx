@@ -4,7 +4,7 @@ import { useProjectContext } from '@/shared/context/project-context'
 import { sendMB, isSmallDevice } from '@/infrastructure/event-tracking'
 import OLTooltip from '@/features/ui/components/ol/ol-tooltip'
 import OLButton from '@/features/ui/components/ol/ol-button'
-import MaterialIcon from '@/shared/components/material-icon'
+import { IconDownload } from '@/shared/svgs/build-icon'
 
 function PdfHybridDownloadButton() {
   const { pdfDownloadUrl } = useCompileContext()
@@ -49,7 +49,7 @@ function PdfHybridDownloadButton() {
         style={{ pointerEvents: 'auto' }}
         aria-label={t('download_pdf')}
       >
-        <MaterialIcon type="download" />
+        <IconDownload style={{fontSize: 18, color: "#4E5969"}}/>
       </OLButton>
     </OLTooltip>
   )

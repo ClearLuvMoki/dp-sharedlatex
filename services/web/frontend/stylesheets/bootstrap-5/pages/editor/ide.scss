@@ -167,7 +167,8 @@ $editor-toggler-bg-dark-color: color.adjust(
 
   // Enable ::before and ::after pseudo-elements to position themselves correctly
   position: relative;
-  background-color: var(--editor-resizer-bg-color);
+  // background-color: var(--editor-resizer-bg-color);
+  background-color: #e5e6eb;
 
   .custom-toggler {
     padding: 0;

@@ -42,14 +42,17 @@
     .dropdown > .compile-dropdown-toggle {
       width: 26px;
       padding: var(--spacing-01);
+      background-color: #e8e9f4;
+      color: #3C49DD;
     }
   }
 }
 
 .pdf .toolbar.toolbar-pdf {
   @include toolbar-sm-height;
-  @include toolbar-alt-bg;
 
+  background-color: #E5E6EB;
+  color: #4E5969;
   padding-right: var(--spacing-03);
   margin-left: 0;
 
@@ -68,7 +71,9 @@
     height: 28px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    background-color: var(--bg-accent-01);
+    background-color: #e8e9f4;
+    border-radius: 14px;
+    overflow: hidden;
 
     .btn-primary:hover {
       z-index: auto; // prevents border from being hidden
@@ -161,8 +166,7 @@
     border: none;
 
     &.active {
-      color: var(--white);
-      background-color: var(--link-color);
+      // background-color: var(--link-color);
       box-shadow: none;
       opacity: 0.65;
 

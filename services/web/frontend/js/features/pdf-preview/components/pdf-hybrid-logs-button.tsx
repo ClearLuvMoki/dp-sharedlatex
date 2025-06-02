@@ -1,11 +1,11 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import MaterialIcon from '@/shared/components/material-icon'
 import { useDetachCompileContext as useCompileContext } from '@/shared/context/detach-compile-context'
 import * as eventTracking from '@/infrastructure/event-tracking'
 import OLTooltip from '@/features/ui/components/ol/ol-tooltip'
 import OLButton from '@/features/ui/components/ol/ol-button'
 import OLBadge from '@/features/ui/components/ol/ol-badge'
+import { IconFile } from '@/shared/svgs/build-icon'
 
 function PdfHybridLogsButton() {
   const { error, logEntries, toggleLogs, showLogs, stoppedOnFirstError } =
@@ -40,7 +40,7 @@ function PdfHybridLogsButton() {
         style={{ position: 'relative' }}
         aria-label={showLogs ? t('view_pdf') : t('view_logs')}
       >
-        <MaterialIcon type="description" />
+        <IconFile style={{fontSize: 18, color: "#4E5969"}}/>
 
         {!showLogs && totalCount > 0 && (
           <OLBadge bg={errorCount === 0 ? 'warning' : 'danger'}>

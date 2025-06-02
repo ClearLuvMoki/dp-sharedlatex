@@ -48,7 +48,7 @@ export default function EditorSidebar() {
           order={2}
           collapsible
           ref={outlinePanelRef}
-          style={{ minHeight: 32 }} // keep the header visible
+          style={{ minHeight: 60 }} // keep the header visible
         >
           <OutlineContainer />
         </Panel>
