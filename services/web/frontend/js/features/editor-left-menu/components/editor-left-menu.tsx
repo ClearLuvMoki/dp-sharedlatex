@@ -42,6 +42,7 @@ function EditorLeftMenu() {
           className={classNames('full-size', 'left-menu', {
             shown: leftMenuShown,
           })}
+          style={{backgroundColor: "#fff"}}
           id="left-menu"
         >
           <LazyEditorLeftMenuWithErrorBoundary />

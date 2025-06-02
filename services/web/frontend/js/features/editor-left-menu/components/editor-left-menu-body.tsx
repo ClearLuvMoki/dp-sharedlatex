@@ -8,10 +8,10 @@ export default function EditorLeftMenuBody() {
   return (
     <>
       <DownloadMenu />
-      <ActionsMenu />
-      <SyncMenu />
+      {/* <ActionsMenu /> */}
+      {/* <SyncMenu /> */}
       <SettingsMenu />
-      <HelpMenu />
+      {/* <HelpMenu /> */}
     </>
   )
 }

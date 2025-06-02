@@ -20,6 +20,7 @@ import TryNewEditorButton from '../try-new-editor-button'
 import { OnlineUser } from '@/features/ide-react/context/online-users-context'
 import { Cobranding } from '../../../../../types/cobranding'
 import arrowIcon from '@/shared/svgs/arrow.svg'
+import { IconMenu } from '@/shared/svgs/build-icon'
 
 const [publishModalModules] = importOverleafModules('publishModal') as {
   import: { default: ElementType }
@@ -109,11 +110,11 @@ const ToolbarHeader = React.memo(function ToolbarHeader({
             fontSize: 16,
             fontWeight: 500
           }}
-        >新建项目</span>
+        >{t("create")}</span>
       </div>
+      <IconMenu style={{color: "#4E5969", fontSize: 18, cursor: "pointer", margin: "0 6px"}} onClick={onShowLeftMenuClick}/>
 
       {/* <div className="toolbar-left">
-        <MenuButton onClick={onShowLeftMenuClick} />
         {cobranding && cobranding.logoImgUrl && (
           <CobrandingLogo {...cobranding} />
         )}

@@ -77,6 +77,7 @@ export function FileTreeModalCreateFileFooterContent({
           form="create-file"
           disabled={inFlight || !valid}
           isLoading={inFlight}
+          style={{ backgroundColor: Boolean(inFlight || !valid )? "": "#3C49DD"}}
         >
           {t('create')}
         </OLButton>

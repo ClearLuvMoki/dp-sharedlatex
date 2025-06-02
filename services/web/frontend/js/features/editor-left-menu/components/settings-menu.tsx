@@ -41,10 +41,10 @@ export default function SettingsMenu() {
         <SettingsImageName />
         <SettingsDocument />
         <SettingsSpellCheckLanguage />
-        <SettingsDictionary />
-        {moduleSettings.map(({ import: { default: Component }, path }) => (
+        {/* <SettingsDictionary /> */}
+        {/* {moduleSettings.map(({ import: { default: Component }, path }) => (
           <Component key={path} />
-        ))}
+        ))} */}
         <SettingsAutoComplete />
         <SettingsAutoCloseBrackets />
         <SettingsSyntaxValidation />

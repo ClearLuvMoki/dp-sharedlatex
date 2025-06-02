@@ -127,7 +127,7 @@ function CompileErrorModal({
         </OLModalHeader>
         <OLModalBody>{t('generic_linked_file_compile_error')}</OLModalBody>
         <OLModalFooter>
-          <OLButton variant="primary" href={`/project/${project.id}`}>
+          <OLButton variant="primary" href={`/project/${project.id}`} style={{backgroundColor: "#3C49DD"}}>
             {t('open_project')}
           </OLButton>
         </OLModalFooter>

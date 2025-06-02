@@ -78,7 +78,9 @@ export default function SettingsMenuSelect<T extends PossibleValue = string>({
       controlId={`settings-menu-${name}`}
       className="left-menu-setting"
     >
-      <OLFormLabel>{label}</OLFormLabel>
+      <div>
+        <OLFormLabel>{label}</OLFormLabel>
+      </div>
       {loading ? (
         <p className="mb-0">
           <Spinner
@@ -95,6 +97,13 @@ export default function SettingsMenuSelect<T extends PossibleValue = string>({
           value={value?.toString()}
           disabled={disabled}
           ref={selectRef}
+          style={{
+            width: "100%",
+            backgroundColor: "#F2F3F5",
+            color: "#86909C",
+            borderRadius: 2,
+            border: "none"
+          }}
         >
           {options.map(option => (
             <option

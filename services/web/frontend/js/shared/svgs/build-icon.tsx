@@ -89,3 +89,9 @@ export const IconDownload = buildIcon(
     </svg>
 
 )
+
+export const IconMenu = buildIcon(
+    <svg width="1em" height="1em" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2.97546 8.74609H14.9755M2.97546 4.74609H14.9755M6.97546 12.7461H14.9755" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+)

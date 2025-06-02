@@ -92,6 +92,7 @@ function FileTreeModalCreateFolder() {
               variant="primary"
               onClick={handleCreateFolder}
               disabled={!validName}
+              style={{ backgroundColor: "#3C49DD"}}
             >
               {t('create')}
             </OLButton>

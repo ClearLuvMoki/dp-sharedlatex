@@ -30,7 +30,7 @@ export default function SettingsFontFamily() {
         label={t('font_family')}
         name="fontFamily"
       />
-      <BetaBadge
+      {/* <BetaBadge
         phase="release"
         link={{
           href: 'https://docs.google.com/forms/d/e/1FAIpQLScOt_IHTrcaM_uitP9dgCo_r4dl4cy9Ry6LhYYcwTN4qDTDUg/viewform',
@@ -41,7 +41,7 @@ export default function SettingsFontFamily() {
           text: `${t('new_font_open_dyslexic')} ${t('click_to_give_feedback')}`,
           placement: 'right',
         }}
-      />
+      /> */}
     </div>
   )
 }

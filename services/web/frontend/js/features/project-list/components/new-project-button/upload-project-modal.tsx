@@ -104,6 +104,7 @@ function UploadProjectModal({ onHide, openProject }: UploadProjectModalProps) {
           showLinkToFileUploadResult={false}
           hideUploadButton
           showSelectedFiles={false}
+          style={{backgroundColor: "#3C49DD"}}
           height={300}
           locale={{
             strings: {

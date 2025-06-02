@@ -105,7 +105,7 @@ function PdfCompileButton() {
           onClick={() => startCompile()}
           className={buttonClassName}
           loadingLabel={`${t('compiling')}…`}
-          style={{color: "#3C49DD", backgroundColor: "#e8e9f4"}}
+          style={{color: "#e8e9f4", backgroundColor: "#3C49DD"}}
         >
           {t('recompile')}
         </OLButton>

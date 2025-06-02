@@ -1,3 +1,5 @@
+import latexLogo from '@/shared/svgs/latex.svg'
+
 type LoadingBrandedTypes = {
   loadProgress: number // Percentage
   label?: string
@@ -11,12 +13,7 @@ export default function LoadingBranded({
 }: LoadingBrandedTypes) {
   return (
     <>
-      <div className="loading-screen-brand-container">
-        <div
-          className="loading-screen-brand"
-          style={{ height: `${loadProgress}%` }}
-        />
-      </div>
+       <img src={latexLogo} style={{width: 150, height: "auto"}}/>
 
       {!hasError && (
         <div className="h3 loading-screen-label" aria-live="polite">

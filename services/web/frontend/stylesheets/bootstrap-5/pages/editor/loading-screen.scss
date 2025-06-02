@@ -27,25 +27,25 @@
     min-width: 200px;
   }
 
-  .loading-screen-brand {
-    position: relative;
-    padding-top: math.percentage(math.div(150, 130)); // dimensions of the SVG
-    height: 0;
-    background: url(../../../../../public/img/ol-brand/overleaf-o-grey.svg)
-      no-repeat bottom / 100%;
+  // .loading-screen-brand {
+  //   position: relative;
+  //   padding-top: math.percentage(math.div(150, 130)); // dimensions of the SVG
+  //   height: 0;
+  //   background: url(../../../../../public/img/ol-brand/overleaf-o-grey.svg)
+  //     no-repeat bottom / 100%;
 
-    &::after {
-      content: '';
-      position: absolute;
-      height: inherit;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: url(../../../../../public/img/ol-brand/overleaf-o.svg)
-        no-repeat bottom / 100%;
-      transition: height 0.5s;
-    }
-  }
+  //   &::after {
+  //     content: '';
+  //     position: absolute;
+  //     height: inherit;
+  //     right: 0;
+  //     bottom: 0;
+  //     left: 0;
+  //     background: url(../../../../../public/img/ol-brand/overleaf-o.svg)
+  //       no-repeat bottom / 100%;
+  //     transition: height 0.5s;
+  //   }
+  // }
 
   .loading-screen-label {
     margin: 0;

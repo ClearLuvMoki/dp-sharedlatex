@@ -145,13 +145,9 @@
 
   .left-menu-setting {
     padding: 0 var(--spacing-02);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid rgb(0 0 0 / 7%);
     margin-bottom: 0;
-    height: 43px;
+    height: auto;
+    margin-bottom: 16px;
 
     &:first-child {
       margin-top: calc(var(--spacing-04) * -1);
@@ -161,14 +157,14 @@
       border-bottom: 0;
     }
 
-    &:hover,
-    &:focus-within {
-      background-color: var(--bg-info-01);
+    // &:hover,
+    // &:focus-within {
+    //   background-color: var(--bg-info-01);
 
-      label {
-        color: var(--white);
-      }
-    }
+    //   label {
+    //     color: var(--white);
+    //   }
+    // }
 
     .form-select {
       border: 1px solid var(--left-menu-form-select-border);
