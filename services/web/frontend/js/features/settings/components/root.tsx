@@ -60,9 +60,9 @@ function SettingsPageContent() {
             <OLCol lg={5}>
               <AccountInfoSection />
             </OLCol>
-            <OLCol lg={{ span: 5, offset: 1 }}>
+            {/* <OLCol lg={{ span: 5, offset: 1 }}>
               <PasswordSection />
-            </OLCol>
+            </OLCol> */}
           </OLRow>
           <hr />
           <SecuritySection />

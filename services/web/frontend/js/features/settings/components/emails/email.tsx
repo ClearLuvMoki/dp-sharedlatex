@@ -33,8 +33,8 @@ function Email({ userEmailData }: EmailProps) {
       {!userEmailData.confirmedAt && (
         <div className="small">
           <strong>{t('unconfirmed')}.</strong>
-          <br />
-          {!ssoAvailable && (
+          {/* <br /> */}
+          {/* {!ssoAvailable && (
             <ResendConfirmationCodeModal
               email={userEmailData.email}
               setGroupLoading={setUserEmailsContextLoading}
@@ -42,7 +42,7 @@ function Email({ userEmailData }: EmailProps) {
               onSuccess={getEmails}
               triggerVariant="link"
             />
-          )}
+          )} */}
         </div>
       )}
       {hasBadges && (

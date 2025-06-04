@@ -102,7 +102,7 @@ function ModalContentNewProjectForm({ onCancel, template = 'none' }: Props) {
           onClick={createNewProject}
           disabled={projectName === '' || isLoading}
           isLoading={isLoading}
-          style={{ backgroundColor: Boolean(isLoading || projectName === '')? "": "#3C49DD"}}
+          style={{ backgroundColor:  "#3C49DD", opacity: Boolean(isLoading || projectName === '') ? 0.7 : 1}}
         >
           {t('create')}
         </OLButton>

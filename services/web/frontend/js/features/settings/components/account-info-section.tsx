@@ -72,7 +72,7 @@ function AccountInfoSection() {
     <>
       <h3 id="update-account-info">{t('update_account_info')}</h3>
       <form id="account-info-form" onSubmit={handleSubmit}>
-        {hasAffiliationsFeature ? null : (
+        {/* {hasAffiliationsFeature ? null : (
           <ReadOrWriteFormGroup
             id="email-input"
             type="email"
@@ -82,7 +82,7 @@ function AccountInfoSection() {
             canEdit={canUpdateEmail}
             required
           />
-        )}
+        )} */}
         <ReadOrWriteFormGroup
           id="first-name-input"
           type="text"
@@ -129,6 +129,7 @@ function AccountInfoSection() {
               isLoading={isLoading}
               loadingLabel={t('saving') + '…'}
               aria-labelledby={isLoading ? undefined : 'update-account-info'}
+              style={{backgroundColor: '#3C49DD', color: '#ffffff', opacity: (isLoading ||!isFormValid) ? 0.7 : 1}}
             >
               {t('update')}
             </OLButton>

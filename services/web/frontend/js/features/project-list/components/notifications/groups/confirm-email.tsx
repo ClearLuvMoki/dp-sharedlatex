@@ -138,15 +138,15 @@ function ConfirmEmailNotification({
     return null
   }
 
-  const confirmationCodeModal = (
-    <ResendConfirmationCodeModal
-      email={emailAddress}
-      onSuccess={() => setIsSuccess(true)}
-      setGroupLoading={setIsLoading}
-      groupLoading={isLoading}
-      triggerVariant="secondary"
-    />
-  )
+  // const confirmationCodeModal = (
+  //   <ResendConfirmationCodeModal
+  //     email={emailAddress}
+  //     onSuccess={() => setIsSuccess(true)}
+  //     setGroupLoading={setIsLoading}
+  //     groupLoading={isLoading}
+  //     triggerVariant="secondary"
+  //   />
+  // )
 
   let notificationType: 'info' | 'warning' | undefined
   let notificationBody: ReactNode | undefined
@@ -219,15 +219,15 @@ function ConfirmEmailNotification({
     )
   }
 
-  if (notificationType) {
-    return (
-      <Notification
-        type={notificationType}
-        content={notificationBody}
-        action={confirmationCodeModal}
-      />
-    )
-  }
+  // if (notificationType) {
+  //   return (
+  //     <Notification
+  //       type={notificationType}
+  //       content={notificationBody}
+  //       action={confirmationCodeModal}
+  //     />
+  //   )
+  // }
 
   return null
 }

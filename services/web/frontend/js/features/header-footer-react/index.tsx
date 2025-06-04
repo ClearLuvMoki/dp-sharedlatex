@@ -10,7 +10,7 @@ if (navbarElement) {
   const root = createRoot(navbarElement)
   root.render(
     <SplitTestProvider>
-      <DefaultNavbarRoot {...navbarProps} />
+      <DefaultNavbarRoot {...navbarProps} title='Latex' />
     </SplitTestProvider>
   )
 }
