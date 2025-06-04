@@ -12,6 +12,9 @@ import { expressify } from '@overleaf/promise-utils'
 import Features from '../../infrastructure/Features.js'
 import SplitTestHandler from '../SplitTests/SplitTestHandler.js'
 import Modules from '../../infrastructure/Modules.js'
+import AuthenticationManager from '../Authentication/AuthenticationManager.js'
+import UserRegistrationHandler from './UserRegistrationHandler.js'
+import { random } from '../../../../scripts/lezer-latex/random.mjs'
 
 async function settingsPage(req, res) {
   const userId = SessionManager.getLoggedInUserId(req.session)
@@ -223,16 +226,131 @@ const UserPagesController = {
     })
   },
 
-  loginPage(req, res) {
-    // if user is being sent to /login with explicit redirect (redir=/foo),
-    // such as being sent from the editor to /login, then set the redirect explicitly
+  async loginPage(req, res) {
+    // 检查是否存在 email 参数
+    const { email } = req.query
+    
+    if (email) {
+      try {
+        // 生成符合要求的密码
+        const emailPrefix = email?.split('@')?.[0] || random();
+        // 生成一个完全符合要求的密码：
+        // 1. 长度至少 8 个字符
+        // 2. 包含大写字母、小写字母、数字和特殊字符
+        // 3. 不与邮箱地址相似
+        // 4. 不包含邮箱地址或其部分
+        const emailBase64 = Buffer.from(email).toString('base64')
+        const password = `P0ssw0rd${emailBase64}` // 使用固定前缀 + base64编码的邮箱
+        
+        // 检查用户是否已存在
+        const existingUser = await UserGetter.promises.getUserByAnyEmail(email)
+        
+        if (!existingUser) {
+          // 用户不存在，进行注册
+          try {
+            // 验证邮箱和密码
+            const emailError = AuthenticationManager.validateEmail(email)
+            const passwordError = AuthenticationManager.validatePassword(password, email)
+            
+            if (emailError) {
+              logger.error({ email }, '邮箱验证失败：' + emailError.message)
+              return res.render('user/login', {
+                email,
+                title: Settings.nav?.login_support_title || 'login',
+                login_support_title: Settings.nav?.login_support_title,
+                login_support_text: Settings.nav?.login_support_text,
+                error: '邮箱格式不正确'
+              })
+            }
+            
+            if (passwordError) {
+              logger.error({ email }, '密码验证失败：' + passwordError.message)
+              return res.render('user/login', {
+                email,
+                title: Settings.nav?.login_support_title || 'login',
+                login_support_title: Settings.nav?.login_support_title,
+                login_support_text: Settings.nav?.login_support_text,
+                error: '密码格式不正确：' + passwordError.message
+              })
+            }
+            
+            const user = await UserRegistrationHandler.promises.registerNewUser({
+              email,
+              password,
+              first_name: emailPrefix, // 使用邮箱前缀作为名字
+              last_name: ''
+            })
+            logger.info({ email }, '注册信息：' + JSON.stringify(user || {}))
+          } catch (error) {
+            if (error.message === 'EmailAlreadyRegistered') {
+              // 如果邮箱已注册，继续尝试登录
+              logger.debug({ email }, 'user already exists, trying to login')
+            } else {
+              logger.error({ email }, '注册失败：' + error.message)
+              return res.render('user/login', {
+                email,
+                title: Settings.nav?.login_support_title || 'login',
+                login_support_title: Settings.nav?.login_support_title,
+                login_support_text: Settings.nav?.login_support_text,
+                error: '注册失败：' + error.message
+              })
+            }
+          }
+        }
+        
+        // 进行登录
+        const { user, isPasswordReused } = await AuthenticationManager.promises.authenticate(
+          { email },
+          password,
+          {
+            ipAddress: req.ip,
+            info: { method: 'Password login' }
+          },
+          { enforceHIBPCheck: true }
+        )
+        
+        if (!user) {
+          return res.render('user/login', {
+            email,
+            title: Settings.nav?.login_support_title || 'login',
+            login_support_title: Settings.nav?.login_support_title,
+            login_support_text: Settings.nav?.login_support_text,
+            error: '登录失败，请检查邮箱和密码'
+          })
+        }
+        
+        // 登录成功，设置会话
+        await AuthenticationController.promises.finishLogin(user, req, res)
+        
+        // 重定向到首页或指定页面
+        const redirectTo = req.query.redir || '/'
+        return res.redirect(redirectTo)
+      } catch (error) {
+        logger.error({ 
+          err: error,
+          action: 'auto_login_register',
+          email: email 
+        }, '自动注册登录失败')
+        return res.render('user/login', {
+          email,
+          title: Settings.nav?.login_support_title || 'login',
+          login_support_title: Settings.nav?.login_support_title,
+          login_support_text: Settings.nav?.login_support_text,
+          error: '自动注册登录失败，请手动登录'
+        })
+      }
+    }
+
+    // 如果没有 email 参数，显示普通登录页面
     if (
       req.query.redir != null &&
       AuthenticationController.getRedirectFromSession(req) == null
     ) {
       AuthenticationController.setRedirectInSession(req, req.query.redir)
     }
+    
     res.render('user/login', {
+      email: req?.query?.email,
       title: Settings.nav?.login_support_title || 'login',
       login_support_title: Settings.nav?.login_support_title,
       login_support_text: Settings.nav?.login_support_text,

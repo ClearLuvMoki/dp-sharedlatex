@@ -15,6 +15,8 @@ block content
 							form(data-ol-async-form, name="loginForm", action='/login', method="POST")
 								input(name='_csrf', type='hidden', value=csrfToken)
 								+formMessagesNewStyle()
+								if error
+									.alert.alert-danger #{error}
 								+customFormMessageNewStyle('invalid-password-retry-or-reset', 'danger')
 									| !{translate('email_or_password_wrong_try_again_or_reset', {}, [{ name: 'a', attrs: { href: '/user/password/reset', 'aria-describedby': 'resetPasswordDescription' } }])}
 									span.visually-hidden(id='resetPasswordDescription')
@@ -27,7 +29,8 @@ block content
 										name='email',
 										required,
 										placeholder='email@example.com',
-										autofocus="true"
+										autofocus="true",
+										value=email || ""
 									)
 								.form-group
 									input.form-control(
