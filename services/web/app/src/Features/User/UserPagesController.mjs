@@ -323,7 +323,13 @@ const UserPagesController = {
         await AuthenticationController.promises.finishLogin(user, req, res)
         
         // 重定向到首页或指定页面
-        const redirectTo = req.query.redir || '/'
+        const redirectTo = req.query.redir || '/project' // 默认重定向到项目页面
+        logger.info({ 
+          email,
+          redirectTo,
+          userId: user._id 
+        }, '登录成功，准备重定向')
+        
         return res.redirect(redirectTo)
       } catch (error) {
         logger.error({ 
@@ -331,6 +337,12 @@ const UserPagesController = {
           action: 'auto_login_register',
           email: email 
         }, '自动注册登录失败')
+        
+        // 如果已经发送了响应，直接返回
+        if (res.headersSent) {
+          return
+        }
+        
         return res.render('user/login', {
           email,
           title: Settings.nav?.login_support_title || 'login',
