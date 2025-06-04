@@ -105,7 +105,7 @@ function SidebarDsNav() {
               </Dropdown.Menu>
             </Dropdown>
           )}
-          {sessionUser && (
+          {/* {sessionUser && (
             <>
               <Dropdown
                 className="ds-nav-icon-dropdown"
@@ -152,7 +152,7 @@ function SidebarDsNav() {
               </Dropdown>
               <UserProvider>{contactUsModal}</UserProvider>
             </>
-          )}
+          )} */}
         </div>
         <div className="ds-nav-ds-name">
           <span>Digital Science</span>

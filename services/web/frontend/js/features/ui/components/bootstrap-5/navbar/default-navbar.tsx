@@ -88,7 +88,8 @@ function DefaultNavbar(props: DefaultNavbarMetadata) {
                 id="navbar-main-collapse"
                 className="justify-content-end"
               >
-                <Nav as="ul" className="ms-auto" role="menubar">
+                <div/>
+                {/* <Nav as="ul" className="ms-auto" role="menubar">
                   {canDisplayAdminMenu ||
                   canDisplayAdminRedirect ||
                   canDisplaySplitTestMenu ? (
@@ -126,7 +127,7 @@ function DefaultNavbar(props: DefaultNavbarMetadata) {
                   ) : (
                     <LoggedOutItems showSignUpLink={showSignUpLink} />
                   )}
-                </Nav>
+                </Nav> */}
               </Navbar.Collapse>
             </>
           )}
