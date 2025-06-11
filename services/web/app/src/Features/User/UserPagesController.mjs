@@ -243,9 +243,6 @@ const UserPagesController = {
         const accessTokenRes = await fetch(`https://zjuam.zju.edu.cn/cas/oauth2.0/accessToken?client_id=${client_id}&code=${ticket}&client_secret=${client_secret}&redirect_uri=${redirect_uri}`, {
           method: "GET",
         })
-          .catch((err) => {
-            logger.info(`accessTokenDataErr: ${JSON.stringify(err)}`);
-          })
         accessTokenData = await accessTokenRes.json();
       } catch (err) {
         logger.error({ err }, 'accessTokenErr')
@@ -256,9 +253,6 @@ const UserPagesController = {
           const userInfoRes = await fetch(`https://zjuam.zju.edu.cn/cas/oauth2.0/profile?access_token=${accessTokenData?.access_token}`, {
             method: "GET",
           })
-            .catch((err) => {
-              logger.info(`userInfoResErr: ${JSON.stringify(err)}`);
-            })
           const userInfoData = await userInfoRes.json();
           logger.info(`userInfoData: ${JSON.stringify(userInfoData)}`);
         }
@@ -268,10 +262,12 @@ const UserPagesController = {
     }
 
     const code = userInfoData?.attributes?.[0]?.CODE;
+    logger.info(`user code: ${code}`);
     let email = "";
     if (code) {
       email = `${code}@zju.edu.cn`
     }
+    logger.info(`user email: ${email}`);
 
     if (email) {
       try {
