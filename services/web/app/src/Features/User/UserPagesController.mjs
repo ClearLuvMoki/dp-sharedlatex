@@ -253,7 +253,7 @@ const UserPagesController = {
           const userInfoRes = await fetch(`https://zjuam.zju.edu.cn/cas/oauth2.0/profile?access_token=${accessTokenData?.access_token}`, {
             method: "GET",
           })
-          const userInfoData = await userInfoRes.json();
+          userInfoData = await userInfoRes.json();
           logger.info(`userInfoData: ${JSON.stringify(userInfoData)}`);
         }
       } catch (err) {
@@ -261,7 +261,7 @@ const UserPagesController = {
       }
     }
 
-    const code = userInfoData?.attributes?.[0]?.CODE;
+    const code = userInfoData?.attributes.find(d => d?.CODE)?.CODE;
     logger.info(`user code: ${code}`);
     let email = "";
     if (code) {
