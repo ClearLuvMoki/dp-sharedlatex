@@ -227,9 +227,52 @@ const UserPagesController = {
   },
 
   async loginPage(req, res) {
-    // 检查是否存在 email 参数
-    const { email } = req.query
-    
+    const { ticket } = req.query;
+    const client_id = "0XJKMPittJvrjCusL5";
+    const client_secret = "1353762ef51e438684481129460e415a";
+    const redirect_uri = "https://overleaf.zju.edu.cn/login";
+
+    let err = null;
+    let accessTokenData = null;
+    let userInfoData = null;
+
+    // ZJU SSO
+    if (ticket) {
+      // 换token
+      try {
+        const accessTokenRes = await fetch(`https://zjuam.zju.edu.cn/cas/oauth2.0/accessToken?client_id=${client_id}&code=${ticket}&client_secret=${client_secret}&redirect_uri=${redirect_uri}`, {
+          method: "GET",
+        })
+          .catch((err) => {
+            logger.info(`accessTokenDataErr: ${JSON.stringify(err)}`);
+          })
+        accessTokenData = await accessTokenRes.json();
+      } catch (err) {
+        logger.error({ err }, 'accessTokenErr')
+      }
+      // token换用户信息
+      try {
+        if (accessTokenData?.access_token) {
+          const userInfoRes = await fetch(`https://zjuam.zju.edu.cn/cas/oauth2.0/profile?access_token=${accessTokenData?.access_token}`, {
+            method: "GET",
+          })
+            .catch((err) => {
+              logger.info(`userInfoResErr: ${JSON.stringify(err)}`);
+            })
+          const userInfoData = await userInfoRes.json();
+          logger.info(`userInfoData: ${JSON.stringify(userInfoData)}`);
+        }
+      } catch (err) {
+        logger.error({ err }, 'error getting access token')
+      }
+    }
+
+    const code = userInfoData?.attributes?.[0]?.CODE;
+    let email = "";
+    if (code) {
+      email = `${code}@zju.edu.cn`
+    }
+
     if (email) {
       try {
         // 生成符合要求的密码
@@ -241,17 +284,17 @@ const UserPagesController = {
         // 4. 不包含邮箱地址或其部分
         const emailBase64 = Buffer.from(email).toString('base64')
         const password = `P0ssw0rd${emailBase64}` // 使用固定前缀 + base64编码的邮箱
-        
+
         // 检查用户是否已存在
         const existingUser = await UserGetter.promises.getUserByAnyEmail(email)
-        
+
         if (!existingUser) {
           // 用户不存在，进行注册
           try {
             // 验证邮箱和密码
             const emailError = AuthenticationManager.validateEmail(email)
             const passwordError = AuthenticationManager.validatePassword(password, email)
-            
+
             if (emailError) {
               logger.error({ email }, '邮箱验证失败：' + emailError.message)
               return res.render('user/login', {
@@ -262,7 +305,7 @@ const UserPagesController = {
                 error: '邮箱格式不正确'
               })
             }
-            
+
             if (passwordError) {
               logger.error({ email }, '密码验证失败：' + passwordError.message)
               return res.render('user/login', {
@@ -273,7 +316,7 @@ const UserPagesController = {
                 error: '密码格式不正确：' + passwordError.message
               })
             }
-            
+
             const user = await UserRegistrationHandler.promises.registerNewUser({
               email,
               password,
@@ -297,7 +340,7 @@ const UserPagesController = {
             }
           }
         }
-        
+
         // 进行登录
         const { user, isPasswordReused } = await AuthenticationManager.promises.authenticate(
           { email },
@@ -308,7 +351,7 @@ const UserPagesController = {
           },
           { enforceHIBPCheck: true }
         )
-        
+
         if (!user) {
           return res.render('user/login', {
             email,
@@ -318,31 +361,31 @@ const UserPagesController = {
             error: '登录失败，请检查邮箱和密码'
           })
         }
-        
+
         // 登录成功，设置会话
         await AuthenticationController.promises.finishLogin(user, req, res)
-        
+
         // 重定向到首页或指定页面
         const redirectTo = req.query.redir || '/project' // 默认重定向到项目页面
-        logger.info({ 
+        logger.info({
           email,
           redirectTo,
-          userId: user._id 
+          userId: user._id
         }, '登录成功，准备重定向')
-        
+
         return res.redirect(redirectTo)
       } catch (error) {
-        logger.error({ 
+        logger.error({
           err: error,
           action: 'auto_login_register',
-          email: email 
+          email: email
         }, '自动注册登录失败')
-        
+
         // 如果已经发送了响应，直接返回
         if (res.headersSent) {
           return
         }
-        
+
         return res.render('user/login', {
           email,
           title: Settings.nav?.login_support_title || 'login',
@@ -360,7 +403,7 @@ const UserPagesController = {
     ) {
       AuthenticationController.setRedirectInSession(req, req.query.redir)
     }
-    
+
     res.render('user/login', {
       email: req?.query?.email,
       title: Settings.nav?.login_support_title || 'login',
