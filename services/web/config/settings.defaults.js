@@ -28,6 +28,8 @@ const intFromEnv = function (name, defaultValue) {
   return parseInt(process.env[name], 10) || defaultValue
 }
 
+
+
 const defaultTextExtensions = [
   'tex',
   'latex',
@@ -112,6 +114,11 @@ const httpPermissionsPolicy = {
 
 module.exports = {
   env: 'server-ce',
+
+  imageRoot:'docker.io/texlive',
+  allowedImageNames: [
+    { imageName: 'texlive-full:2024.1', imageDesc: 'Tex2024' },
+  ],
 
   limits: {
     httpGlobalAgentMaxSockets: 300,

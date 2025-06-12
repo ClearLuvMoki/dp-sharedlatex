@@ -86,6 +86,7 @@ services:
             ### Backwards compatibility (before Server Pro 5.5)
             DOCKER_RUNNER: 'true'
             SANDBOXED_COMPILES_SIBLING_CONTAINERS: 'true'
+            TEX_LIVE_DOCKER_IMAGE: "texlive/texlive:2024.01"
 
             ## Works with test LDAP server shown at bottom of docker compose
             # OVERLEAF_LDAP_URL: 'ldap://ldap:389'
