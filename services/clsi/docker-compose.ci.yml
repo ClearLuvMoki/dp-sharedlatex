@@ -25,8 +25,8 @@ services:
       NODE_OPTIONS: "--unhandled-rejections=strict"
       ENABLE_PDF_CACHING: "true"
       PDF_CACHING_ENABLE_WORKER_POOL: "true"
-      ALLOWED_IMAGES: ghcr.io/xu-cheng/texlive-full:20240101
-      TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-full:20240101
+      ALLOWED_IMAGES: texlive/texlive-full:2024 texlive/texlive-full:2023
+      TEXLIVE_IMAGE: texlive/texlive-full:2024
       TEX_LIVE_IMAGE_NAME_OVERRIDE: us-east1-docker.pkg.dev/overleaf-ops/ol-docker
       TEXLIVE_IMAGE_USER: "tex"
       DOCKER_RUNNER: "true"
