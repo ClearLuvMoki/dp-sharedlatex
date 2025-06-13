@@ -115,10 +115,10 @@ const httpPermissionsPolicy = {
 module.exports = {
   env: 'server-ce',
 
-  imageRoot:'docker.io/texlive',
-  allowedImageNames: [
-    { imageName: 'texlive-full:2024.1', imageDesc: 'Tex2024' },
-  ],
+  // imageRoot:'docker.io/texlive',
+  // allowedImageNames: [
+  //   { imageName: 'texlive-full:2024.1', imageDesc: 'Tex2024' },
+  // ],
 
   limits: {
     httpGlobalAgentMaxSockets: 300,
