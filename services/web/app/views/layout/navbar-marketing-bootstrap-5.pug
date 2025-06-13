@@ -8,7 +8,7 @@ nav.navbar.navbar-default.navbar-main.navbar-expand-lg(class={
 			if settings.nav.custom_logo
 				a(href='/', aria-label=settings.appName, style='background-image:url("'+settings.nav.custom_logo+'")').navbar-brand
 			else if (nav.title)
-				a(href='/', aria-label=settings.appName).navbar-title #{nav.title}
+				a(href='/', aria-label=settings.appName).navbar-title Latex
 			else
 				a(href='/', aria-label=settings.appName).navbar-brand
 
@@ -133,69 +133,69 @@ nav.navbar.navbar-default.navbar-main.navbar-expand-lg(class={
 										| !{translate(item.text)}
 
 					// logged out
-					if !getSessionUser()
-						// register link
-						if hasFeature('registration-page')
-							+nav-item.primary
-								+nav-link(
-									href="/register"
-									event-tracking="menu-click"
-									event-tracking-action="clicked"
-									event-tracking-trigger="click"
-									event-tracking-mb="true"
-									event-segmentation={ page: currentUrl, item: 'register', location: 'top-menu' }
-								) #{translate('sign_up')}
-
-						// login link
-						+nav-item
-							+nav-link(
-								href="/login"
-								event-tracking="menu-click"
-								event-tracking-action="clicked"
-								event-tracking-trigger="click"
-								event-tracking-mb="true"
-								event-segmentation={ page: currentUrl, item: 'login', location: 'top-menu' }
-							) #{translate('log_in')}
+					//if !getSessionUser()
+					//	// register link
+					//	if hasFeature('registration-page')
+					//		+nav-item.primary
+					//			+nav-link(
+					//				href="/register"
+					//				event-tracking="menu-click"
+					//				event-tracking-action="clicked"
+					//				event-tracking-trigger="click"
+					//				event-tracking-mb="true"
+					//				event-segmentation={ page: currentUrl, item: 'register', location: 'top-menu' }
+					//			) #{translate('sign_up')}
+					//
+					//	// login link
+					//	+nav-item
+					//		+nav-link(
+					//			href="/login"
+					//			event-tracking="menu-click"
+					//			event-tracking-action="clicked"
+					//			event-tracking-trigger="click"
+					//			event-tracking-mb="true"
+					//			event-segmentation={ page: currentUrl, item: 'login', location: 'top-menu' }
+					//		) #{translate('log_in')}
 
 					// projects link and account menu
-					if getSessionUser()
-						+nav-item
-							+nav-link(href="/project") #{translate('Projects')}
-						+nav-item.dropdown
-							button.dropdown-toggle(
-								aria-haspopup="true",
-								aria-expanded="false",
-								data-bs-toggle="dropdown"
-								role="menuitem"
-								event-tracking="menu-expand"
-								event-tracking-mb="true"
-								event-tracking-trigger="click"
-								event-segmentation={"item": "account", "location": "top-menu"}
-							)
-								| #{translate('Account')}
-								span.caret
-							+dropdown-menu.dropdown-menu-end
-								+dropdown-menu-item
-									div.disabled.dropdown-item #{getSessionUser().email}
-								+dropdown-menu-divider
-								+dropdown-menu-link-item()(href="/user/settings") #{translate('account_settings')}
-								if nav.showSubscriptionLink
-									+dropdown-menu-link-item()(href="/user/subscription") #{translate('subscription')}
-								+dropdown-menu-divider
-								+dropdown-menu-item
-									//-
-										The button is outside the form but still belongs to it via the form attribute. The reason to do 
-										this is that if the button is inside the form, screen readers will not count it in the total
-										number of menu items.
-									button.btn-link.text-left.dropdown-menu-button.dropdown-item(
-										role="menuitem",
-										tabindex="-1"
-										form="logOutForm"
-									)
-										| #{translate('log_out')}
-									form(
-										method="POST",
-										action="/logout",
-										id="logOutForm"
-									)
-										input(name='_csrf', type='hidden', value=csrfToken)
+					//if getSessionUser()
+					//	+nav-item
+					//		+nav-link(href="/project") #{translate('Projects')}
+					//	+nav-item.dropdown
+					//		button.dropdown-toggle(
+					//			aria-haspopup="true",
+					//			aria-expanded="false",
+					//			data-bs-toggle="dropdown"
+					//			role="menuitem"
+					//			event-tracking="menu-expand"
+					//			event-tracking-mb="true"
+					//			event-tracking-trigger="click"
+					//			event-segmentation={"item": "account", "location": "top-menu"}
+					//		)
+					//			| #{translate('Account')}
+					//			span.caret
+					//		+dropdown-menu.dropdown-menu-end
+					//			+dropdown-menu-item
+					//				div.disabled.dropdown-item #{getSessionUser().email}
+					//			+dropdown-menu-divider
+					//			+dropdown-menu-link-item()(href="/user/settings") #{translate('account_settings')}
+					//			if nav.showSubscriptionLink
+					//				+dropdown-menu-link-item()(href="/user/subscription") #{translate('subscription')}
+					//			+dropdown-menu-divider
+					//			+dropdown-menu-item
+					//				//-
+					//					The button is outside the form but still belongs to it via the form attribute. The reason to do
+					//					this is that if the button is inside the form, screen readers will not count it in the total
+					//					number of menu items.
+					//				button.btn-link.text-left.dropdown-menu-button.dropdown-item(
+					//					role="menuitem",
+					//					tabindex="-1"
+					//					form="logOutForm"
+					//				)
+					//					| #{translate('log_out')}
+					//				form(
+					//					method="POST",
+					//					action="/logout",
+					//					id="logOutForm"
+					//				)
+					//					input(name='_csrf', type='hidden', value=csrfToken)

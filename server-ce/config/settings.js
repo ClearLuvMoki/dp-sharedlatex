@@ -256,11 +256,11 @@ const settings = {
   i18n: {
     subdomainLang: {
       www: {
-        lngCode: process.env.OVERLEAF_SITE_LANGUAGE || 'en',
+        lngCode: process.env.OVERLEAF_SITE_LANGUAGE || 'zh-CN',
         url: siteUrl,
       },
     },
-    defaultLng: process.env.OVERLEAF_SITE_LANGUAGE || 'en',
+    defaultLng: process.env.OVERLEAF_SITE_LANGUAGE || 'zh-CN',
   },
 
   currentImageName: process.env.TEX_LIVE_DOCKER_IMAGE,

@@ -453,9 +453,10 @@ module.exports = {
     checkForHTMLInVars: process.env.I18N_CHECK_FOR_HTML_IN_VARS === 'true',
     escapeHTMLInVars: process.env.I18N_ESCAPE_HTML_IN_VARS === 'true',
     subdomainLang: {
-      www: { lngCode: 'en', url: siteUrl },
+      // www: { lngCode: 'en', url: siteUrl },
+      www: { lngCode: 'zh-CN', url: siteUrl },
     },
-    defaultLng: 'en',
+    defaultLng: 'zh-CN',
   },
 
   // Spelling languages
@@ -464,6 +465,7 @@ module.exports = {
   // ------------------
   languages: [
     { code: 'en', name: 'English' },
+    { code: 'zh-CN', name: 'Chinese' },
     { code: 'en_US', dic: 'en_US', name: 'English (American)' },
     { code: 'en_GB', dic: 'en_GB', name: 'English (British)' },
     { code: 'en_CA', dic: 'en_CA', name: 'English (Canadian)' },
@@ -767,16 +769,17 @@ module.exports = {
     : undefined,
 
   nav: {
-    title: process.env.APP_NAME || 'Overleaf Community Edition',
+    // title: process.env.APP_NAME || 'Overleaf Community Edition',
+    title: 'Latex',
 
     hide_powered_by: process.env.NAV_HIDE_POWERED_BY === 'true',
     left_footer: [],
 
     right_footer: [
-      {
-        text: "<i class='fa fa-github-square'></i> Fork on GitHub!",
-        url: 'https://github.com/overleaf/overleaf',
-      },
+      // {
+      //   text: "<i class='fa fa-github-square'></i> Fork on GitHub!",
+      //   url: 'https://github.com/overleaf/overleaf',
+      // },
     ],
 
     showSubscriptionLink: false,

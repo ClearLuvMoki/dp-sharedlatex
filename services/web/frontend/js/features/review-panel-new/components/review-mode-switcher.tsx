@@ -56,7 +56,7 @@ function ReviewModeSwitcher() {
   const showViewOption = permissionsLevel === 'readOnly'
 
   return (
-    <div className="review-mode-switcher-container">
+    <div className="review-mode-switcher-container" style={{display: "none"}}>
       <Dropdown className="review-mode-switcher" align="end">
         <DropdownToggle
           as={ModeSwitcherToggleButton}

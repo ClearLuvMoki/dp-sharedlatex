@@ -7,8 +7,9 @@ const { URL } = require('url')
 const pug = require('pug-runtime')
 const logger = require('@overleaf/logger')
 const SafeHTMLSubstitution = require('../Features/Helpers/SafeHTMLSubstitution')
+require(`../../../locales/zh-CN.json`)
 
-const fallbackLanguageCode = Settings.i18n.defaultLng || 'en'
+const fallbackLanguageCode = Settings.i18n.defaultLng || 'zh-CN'
 const availableLanguageCodes = []
 const availableHosts = new Map()
 const subdomainConfigs = new Map()
@@ -46,6 +47,7 @@ i18n
     backend: {
       loadPath: path.join(__dirname, '../../../locales/__lng__.json'),
     },
+    lng: "zh-CN",
 
     // still using the v3 plural suffixes
     compatibilityJSON: 'v3',
@@ -88,9 +90,9 @@ const headerLangDetector = new middleware.LanguageDetector(i18n.services, {
 function setLangBasedOnDomainMiddleware(req, res, next) {
   // Determine language from subdomain
   const lang = availableHosts.get(req.headers.host)
-  if (lang) {
-    req.i18n.changeLanguage(lang)
-  }
+  // if (lang) {
+  //   req.i18n.changeLanguage(lang)
+  // }
 
   // expose the language code to pug
   res.locals.currentLngCode = req.language

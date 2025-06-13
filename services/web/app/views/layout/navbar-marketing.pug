@@ -24,7 +24,7 @@ nav.navbar.navbar-default.navbar-main(class={
 			if settings.nav.custom_logo
 				a(href='/', aria-label=settings.appName, style='background-image:url("'+settings.nav.custom_logo+'")').navbar-brand
 			else if (nav.title)
-				a(href='/', aria-label=settings.appName).navbar-title #{nav.title}
+				a(href='/', aria-label=settings.appName).navbar-title Latex
 			else
 				a(href='/', aria-label=settings.appName).navbar-brand
 
@@ -139,59 +139,59 @@ nav.navbar.navbar-default.navbar-main(class={
 										| !{translate(item.text)}
 
 					// logged out
-					if !getSessionUser()
-						// register link
-						if hasFeature('registration-page')
-							li.primary
-								a(
-									href="/register"
-									event-tracking="menu-click"
-									event-tracking-action="clicked"
-									event-tracking-trigger="click"
-									event-tracking-mb="true"
-									event-segmentation={ page: currentUrl, item: 'register', location: 'top-menu' }
-								) #{translate('sign_up')}
-
-						// login link
-						li
-							a(
-								href="/login"
-								event-tracking="menu-click"
-								event-tracking-action="clicked"
-								event-tracking-trigger="click"
-								event-tracking-mb="true"
-								event-segmentation={ page: currentUrl, item: 'login', location: 'top-menu' }
-							) #{translate('log_in')}
+					//if !getSessionUser()
+					//	// register link
+					//	if hasFeature('registration-page')
+					//		li.primary
+					//			a(
+					//				href="/register"
+					//				event-tracking="menu-click"
+					//				event-tracking-action="clicked"
+					//				event-tracking-trigger="click"
+					//				event-tracking-mb="true"
+					//				event-segmentation={ page: currentUrl, item: 'register', location: 'top-menu' }
+					//			) #{translate('sign_up')}
+					//
+					//	// login link
+					//	li
+					//		a(
+					//			href="/login"
+					//			event-tracking="menu-click"
+					//			event-tracking-action="clicked"
+					//			event-tracking-trigger="click"
+					//			event-tracking-mb="true"
+					//			event-segmentation={ page: currentUrl, item: 'login', location: 'top-menu' }
+					//		) #{translate('log_in')}
 
 					// projects link and account menu
-					if getSessionUser()
-						li
-							a(href="/project") #{translate('Projects')}
-						li.dropdown
-							a.dropdown-toggle(
-								href="#",
-								role="button",
-								aria-haspopup="true",
-								aria-expanded="false",
-								data-toggle="dropdown"
-								event-tracking="menu-expand"
-								event-tracking-mb="true"
-								event-tracking-trigger="click"
-								event-segmentation={"item": "account", "location": "top-menu"}
-							)
-								| #{translate('Account')}
-								span.caret
-							ul.dropdown-menu
-								li
-									div.subdued #{getSessionUser().email}
-								li.divider.hidden-xs.hidden-sm
-								li
-									a(href="/user/settings") #{translate('account_settings')}
-								if nav.showSubscriptionLink
-									li
-										a(href="/user/subscription") #{translate('subscription')}
-								li.divider.hidden-xs.hidden-sm
-								li
-									form(method="POST" action="/logout")
-										input(name='_csrf', type='hidden', value=csrfToken)
-										button.btn-link.text-left.dropdown-menu-button #{translate('log_out')}
+					//if getSessionUser()
+					//	li
+					//		a(href="/project") #{translate('Projects')}
+					//	li.dropdown
+					//		a.dropdown-toggle(
+					//			href="#",
+					//			role="button",
+					//			aria-haspopup="true",
+					//			aria-expanded="false",
+					//			data-toggle="dropdown"
+					//			event-tracking="menu-expand"
+					//			event-tracking-mb="true"
+					//			event-tracking-trigger="click"
+					//			event-segmentation={"item": "account", "location": "top-menu"}
+					//		)
+					//			| #{translate('Account')}
+					//			span.caret
+					//		ul.dropdown-menu
+					//			li
+					//				div.subdued #{getSessionUser().email}
+					//			li.divider.hidden-xs.hidden-sm
+					//			li
+					//				a(href="/user/settings") #{translate('account_settings')}
+					//			if nav.showSubscriptionLink
+					//				li
+					//					a(href="/user/subscription") #{translate('subscription')}
+					//			li.divider.hidden-xs.hidden-sm
+					//			li
+					//				form(method="POST" action="/logout")
+					//					input(name='_csrf', type='hidden', value=csrfToken)
+					//					button.btn-link.text-left.dropdown-menu-button #{translate('log_out')}
