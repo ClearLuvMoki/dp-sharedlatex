@@ -212,16 +212,16 @@ const ReviewTooltipMenuContent: FC<{ onAddComment: () => void }> = ({
 
     return (
         <div
-            className={classNames('review-tooltip-menu', {
-                'review-tooltip-menu-visible': visible,
-            })}
+            // className={classNames('review-tooltip-menu', {
+            //     'review-tooltip-menu-visible': visible,
+            // })}
             // style={tooltipStyle}
             style={{
                 display: "none"
             }}
         >
             <button
-                className="review-tooltip-menu-button review-tooltip-add-comment-button"
+                // className="review-tooltip-menu-button review-tooltip-add-comment-button"
                 onClick={onAddComment}
             >
                 <MaterialIcon type="chat"/>
