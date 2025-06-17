@@ -86,7 +86,10 @@ function FileTreeItemInner({
         style={{
           borderRadius: 4,
           overflow: "hidden",
-          padding: "0 8px"
+          padding: "0 8px",
+          height: 35,
+          display: "flex",
+          alignItems: "center",
         }}
       >
         {icons}
